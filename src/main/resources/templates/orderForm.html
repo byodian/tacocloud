@@ -1,0 +1,76 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Taco Cloud</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+    <h1>Design your taco!</h1>
+    <div class="image-wrapper">
+        <img th:src="@{/images/home.jpeg}" alt="">
+    </div>
+    <!--    without an action specified, the form would submit an HTTP POST request back to the same URL that presented the form.-->
+    <form method="POST" th:action="@{/orders}" th:object="${tacoOrder}">
+        <h1>Order your taco creations~</h1>
+
+        <h3>Your tacos in this order:</h3>
+        <div><a th:href="@{/design}" id="another">Design another taco</a></div>
+        <ul>
+            <li th:each="taco : ${tacoOrder.tacos}">
+                <span th:text="${taco.name}">taco name</span>
+            </li>
+        </ul>
+        <h3>Deliver my taco masterpieces to...</h3>
+
+        <div>
+            <label for="deliveryName">Name: </label>
+            <input type="text" th:field="*{deliveryName}" id="deliveryName">
+        </div>
+
+        <div>
+            <label for="deliveryStreet">Street: </label>
+            <input type="text" th:field="*{deliveryStreet}" id="deliveryStreet">
+        </div>
+
+        <div>
+            <label for="deliveryCity">City: </label>
+            <input type="text" th:field="*{deliveryCity}" id="deliveryCity">
+        </div>
+
+        <div>
+            <label for="deliveryState">State: </label>
+            <input type="text" th:field="*{deliveryState}" id="deliveryState">
+        </div>
+
+        <div>
+            <label for="deliveryZip">Zip: </label>
+            <input type="text" th:field="*{deliveryZip}" id="deliveryZip">
+        </div>
+
+        <h3>Here's how I'll pay...</h3>
+        <div>
+            <label for="ccNumber">Credit card #: </label>
+            <input type="text" th:field="*{ccNumber}" id="ccNumber">
+        </div>
+
+        <div>
+            <label for="ccExpiration">Expiration: </label>
+            <input type="text" th:field="*{ccExpiration}" id="ccExpiration">
+        </div>
+
+        <div>
+            <label for="ccCVV">CVV: </label>
+            <input type="text" th:field="*{ccCVV}" id="ccCVV">
+        </div>
+
+        <div>
+            <button>Submit Order</button>
+        </div>
+
+    </form>
+</body>
+</html>
