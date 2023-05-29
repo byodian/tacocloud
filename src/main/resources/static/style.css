@@ -5,3 +5,7 @@ img {
 .image-wrapper {
     width: 250px;
 }
+
+.validation-error {
+    color: red;
+}
